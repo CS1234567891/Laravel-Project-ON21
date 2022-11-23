@@ -1,0 +1,11 @@
+FROM node:lts
+
+# Set working directory
+WORKDIR /var/www/html/frontend
+
+# Copy existing application directory contents to the working directory
+COPY . /var/www/html/frontend/
+
+EXPOSE 3000
+
+CMD bash -c "npm install && npm run dev"

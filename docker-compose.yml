@@ -1,23 +1,45 @@
 version: '3.2'
 services:
 
+  #frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    depends_on:
+      - backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    tty: true
+    environment:
+      SERVICE_NAME: frontend
+      SERVICE_TAGS: dev
+      COMPOSER_ALLOW_SUPERUSER: 1
+    networks:
+      - app-network
+    volumes:
+      - ./frontend:/var/www/html/frontend
+
   #PHP-backend Service
   backend:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     container_name: backend
+    depends_on:
+      - db
     restart: unless-stopped
     tty: true
     environment:
       SERVICE_NAME: backend
       SERVICE_TAGS: dev
       COMPOSER_ALLOW_SUPERUSER: 1
-    working_dir: /var/www/html/
     networks:
       - app-network
     volumes:
-      - ./:/var/www/html/
+      - ./backend:/var/www/html/backend
       - ./php/laravel.ini:/usr/local/etc/php/conf.d/laravel.ini
 
   #Nginx Service
@@ -27,12 +49,11 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "3000:80"
-      - "3001:443"
+      - "9000:9000"
     networks:
       - app-network
     volumes:
-      - ./:/var/www/html/
+      - ./backend:/var/www/html/backend
       - ./nginx/conf.d/:/etc/nginx/conf.d/
 
   #MySQL Service
@@ -70,7 +91,7 @@ services:
     ports:
       - "8081:80"
     networks:
-     - app-network
+      - app-network
 
 #Docker Networks
 networks:
