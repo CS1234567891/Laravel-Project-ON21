@@ -8,6 +8,9 @@ To start the app:
 3. Run "docker-compose up -d". 
 4. Call localhost:3000 in the browser. 
 
+Can take longer to install and initialize the first time, so reload the page in the browser again 
+and again until the website appears after a few seconds the guestbook will also load and be displayed on the website.
+
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
