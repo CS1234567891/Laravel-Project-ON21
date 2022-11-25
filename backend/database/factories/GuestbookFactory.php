@@ -18,8 +18,8 @@ class GuestbookFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'title' => fake()->words(rand(3, 5), true),
-            'text' => fake()->realTextBetween(160, 400, 2) 
+            'title' => fake()->realTextBetween(5, 10, 2),
+            'text' => fake()->realTextBetween(160, 400, 2)
         ];
     }
 }
