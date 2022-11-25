@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::latest()->paginate(5);
-    
+
         return response()->json($users);
     }
 
@@ -24,7 +24,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() { }
+    public function create()
+    {
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -39,9 +41,9 @@ class UserController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-    
+
         $user = User::create($request->all());
-     
+
         return response()->json($user);
     }
 
@@ -51,7 +53,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user) 
+    public function show(User $user)
     {
         // TODO: maybe get the user by mail and return back all information
     }
@@ -62,7 +64,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user) { }
+    public function edit(User $user)
+    {
+    }
 
     /**
      * Update the specified resource in storage.
@@ -78,9 +82,9 @@ class UserController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-    
+
         $user->update($request->all());
-    
+
         return response()->json($user);
     }
 
@@ -93,7 +97,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-    
+
         return response(null, 204);
     }
 }

@@ -15,7 +15,6 @@ class GuestbookController extends Controller
     public function index()
     {
         $guestbook = Guestbook::latest()->paginate(10);
-    
         return response()->json($guestbook);
     }
 
@@ -42,9 +41,7 @@ class GuestbookController extends Controller
             'title' => 'required',
             'text' => 'required',
         ]);
-    
         $guestbook = Guestbook::create($request->all());
-     
         return response()->json($guestbook);
     }
 
@@ -84,9 +81,7 @@ class GuestbookController extends Controller
             'title' => 'required',
             'text' => 'required',
         ]);
-    
         $guestbook->update($request->all());
-    
         return response()->json($guestbook);
     }
 
@@ -99,7 +94,6 @@ class GuestbookController extends Controller
     public function destroy(Guestbook $guestbook)
     {
         $guestbook->delete();
-    
         return response(null, 204);
     }
 }
